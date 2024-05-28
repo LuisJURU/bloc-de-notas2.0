@@ -10,6 +10,7 @@ import {
 const auth = getAuth(appFirebase);
 
 const Login = () => {
+
   const [register, setRegister] = useState(false);
   // Definir el estado para el mensaje de error
   const [errorMessage, setErrorMessage] = useState(null);
@@ -24,6 +25,7 @@ const Login = () => {
       try {
         await createUserWithEmailAndPassword(auth, email, password)
       } catch (error) {
+        // Actualizar el estado con el mensaje de error
         setErrorMessage('Hubo un error al crear la cuenta');
         setTimeout(() => setErrorMessage(null), 3000); // Desaparecerá después de 3 segundos
       }

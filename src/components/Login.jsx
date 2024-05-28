@@ -21,6 +21,8 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
+    
+
     if(register){
       try {
         await createUserWithEmailAndPassword(auth, email, password)
@@ -42,7 +44,7 @@ const Login = () => {
 
   return (
     <div className="form-container">
-      <h1>Iniciar Sesion</h1>
+      <h1>{register ? "Registrate" : " Inciar Sesion"}</h1>
       <p>Ingresa tus datos</p>
       <form id="login-form" onSubmit={funcAuth}>
         <label htmlFor="user" className="sr-only">
@@ -72,8 +74,8 @@ const Login = () => {
       {errorMessage && <p className="txt-danger">{errorMessage}</p>}
       </form>
       <p>
-        {" "}
-        {register ? "Ya tiene cuenta?" : "No tienes cuenta?"}
+
+        {register ? "¿Ya tiene cuenta?" : "¿No tienes cuenta?"}
         <button
           className="p-btn"
           onClick={() => {

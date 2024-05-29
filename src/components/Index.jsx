@@ -13,4 +13,4 @@ const Index = ({userCorreo}) => {
 
 export default Index;
 
-//Crespo aca coloca el blog de notas, guiate de lops videos de que te pase 🫠
+//Crespo aca coloca el blog de notas, guiate de los videos de que te pase 🫠

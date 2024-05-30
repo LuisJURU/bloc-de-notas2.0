@@ -44,7 +44,7 @@ const Login = () => {
 
   return (
     <div className="form-container">
-      <h1>{register ? "Registrate" : " Inciar Sesion"}</h1>
+      <h1>{register ? "Registrate" : " Iniciar Sesion"}</h1>
       <p>Ingresa tus datos</p>
       <form id="login-form" onSubmit={funcAuth}>
         <label htmlFor="user" className="sr-only">

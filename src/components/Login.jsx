@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import  "../css/Login.css";
+import "../css/Login.css";
 import React, { useState } from "react";
 import appFirebase from "../credenciales";
 import {
@@ -11,7 +11,6 @@ import {
 const auth = getAuth(appFirebase);
 
 const Login = () => {
-
   const [register, setRegister] = useState(false);
   // Definir el estado para el mensaje de error
   const [errorMessage, setErrorMessage] = useState(null);
@@ -22,26 +21,24 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    
-
-    if(register){
+    if (register) {
       try {
-        await createUserWithEmailAndPassword(auth, email, password)
+        await createUserWithEmailAndPassword(auth, email, password);
       } catch (error) {
         // Actualizar el estado con el mensaje de error
-        setErrorMessage('Hubo un error al crear la cuenta');
+        setErrorMessage("Hubo un error al crear la cuenta");
         setTimeout(() => setErrorMessage(null), 3000); // Desaparecerá después de 3 segundos
       }
-    }else{
+    } else {
       try {
-        await signInWithEmailAndPassword(auth, email, password)
+        await signInWithEmailAndPassword(auth, email, password);
       } catch (error) {
         // Actualizar el estado con el mensaje de error
-        setErrorMessage('Hubo un error al iniciar sesión');
+        setErrorMessage("Hubo un error al iniciar sesión");
         setTimeout(() => setErrorMessage(null), 3000); // Desaparecerá después de 3 segundos
       }
     }
-};
+  };
 
   return (
     <div className="form-container">
@@ -71,11 +68,10 @@ const Login = () => {
         <button type="submit">
           {register ? "Registrate" : "Iniciar sesion"}
         </button>
-              {/* Mostrar el mensaje de error si existe */}
-      {errorMessage && <p className="txt-danger">{errorMessage}</p>}
+        {/* Mostrar el mensaje de error si existe */}
+        {errorMessage && <p className="txt-danger">{errorMessage}</p>}
       </form>
       <p>
-
         {register ? "¿Ya tiene cuenta?" : "¿No tienes cuenta?"}
         <button
           className="p-btn"
@@ -83,7 +79,6 @@ const Login = () => {
             setRegister(!register);
           }}
         >
-          
           {register ? "Inicia sesion" : "Registrate"}
         </button>{" "}
       </p>

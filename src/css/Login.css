@@ -66,12 +66,6 @@ input, button{
     font-size: larger;
 }
 
-button{
-    background-color: #999999;
-    font-weight: bold;
-    cursor: pointer;
-}
-
 .txt-danger{
     color: red;
 }

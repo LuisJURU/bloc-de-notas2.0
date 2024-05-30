@@ -72,5 +72,3 @@ const Index = ({ userCorreo }) => {
 };
 
 export default Index;
-
-//Crespo aca coloca el blog de notas, guiate de los videos de que te pase 🫠

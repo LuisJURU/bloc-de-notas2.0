@@ -7,10 +7,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 const auth = getAuth(appFirebase);
 
 //importar los componentes
-import Login from "../src/components/Login"; //Dice que hay un error pero es mentira
-import Index from "./components/Index";
-
-import "./App.css";
+import Login from "../src/components/Login";
+import Index from "./components/BlocNotas";
 
 function App() {
   const [user, setUser] = useState(null);

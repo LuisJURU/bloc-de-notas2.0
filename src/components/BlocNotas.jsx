@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import "../css/BlocNotas.css";
@@ -11,10 +12,25 @@ const MySwal = witReactContent(Swal);
 
 import Header from "./Header";
 
-const Index = ({ userCorreo }) => {
-  const [titulo, setTitulo] = useState([]);
-  const hola = "hola";
 
+const Index = ({ userCorreo }) => {
+  const [notas, setNotas] = useState([]);
+
+  const notasCollection = collection(db, "notas");
+
+  const getNotas = async () => {
+    const data = await getDocs(notasCollection);
+
+    // console.log(data.docs);
+    setNotas(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    );
+  };
+  console.log(notas);
+  
+
+  useEffect(() => {
+    getNotas();
+  }, []);
 
   return (
     <>

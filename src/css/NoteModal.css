@@ -1,0 +1,61 @@
+/* NoteModal.css */
+.modalContent {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 300px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
+.modalOverlay {
+  background: none;
+}
+
+.footer-inf {
+  justify-content: space-between;
+  height: 25px;
+  width: 400px;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  background-color: #717171;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+
+.header-modal {
+  display: flex;
+  justify-content: flex-end;
+  height: 25px;
+  width: 400px;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  background-color: #717171;
+}
+
+#WritheNote {
+  width: 99%;
+  height: 90%;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+}
+
+#check {
+  width: 30px;
+  height: 25px;
+  margin: 0;
+}
+
+#close{
+  width: 30px;
+  height: 25px;
+  margin: 0;
+}

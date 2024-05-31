@@ -11,7 +11,7 @@ import witReactContent from "sweetalert2-react-content";
 const MySwal = witReactContent(Swal);
 
 import Header from "./Header";
-
+import Notes from "./Notes";
 
 const Index = ({ userCorreo }) => {
   const [notas, setNotas] = useState([]);
@@ -40,6 +40,7 @@ const Index = ({ userCorreo }) => {
             {/* Aca se immporta el NavBar del bloc de notas */}
             <Header userCorreo={userCorreo} />
           </div>
+          <Notes></Notes>
         </div>
       </div>
     </>

@@ -1,0 +1,22 @@
+button {
+  background-color: #999999;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  background: #999393;
+  border-radius: 10px 10px 0px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  font-size: 20px;
+  text-align: left;
+  margin-left: 20px;
+  flex-grow: 1; /* Agrega esta línea */
+}

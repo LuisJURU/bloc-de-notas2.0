@@ -1,10 +1,21 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import "../css/BlocNotas.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { collection, getDocs, getDoc, deleteDoc } from "firebase/firestore";
+import { db } from "../credenciales";
+
+import Swal from "sweetalert2";
+import witReactContent from "sweetalert2-react-content";
+const MySwal = witReactContent(Swal);
+
 import Header from "./Header";
 
 const Index = ({ userCorreo }) => {
+  const [titulo, setTitulo] = useState([]);
+
+
+
   return (
     <>
       <div className="container-bloc">
@@ -12,42 +23,6 @@ const Index = ({ userCorreo }) => {
           <div>
             {/* Aca se immporta el NavBar del bloc de notas */}
             <Header userCorreo={userCorreo} />
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-              repellat quam illum aut a asperiores aperiam, delectus velit nihil
-              porro, deleniti, praesentium impedit voluptas reiciendis quo
-              voluptatem. Deserunt, ab minima.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-              repellat quam illum aut a asperiores aperiam, delectus velit nihil
-              porro, deleniti, praesentium impedit voluptas reiciendis quo
-              voluptatem. Deserunt, ab minima.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-              repellat quam illum aut a asperiores aperiam, delectus velit nihil
-              porro, deleniti, praesentium impedit voluptas reiciendis quo
-              voluptatem. Deserunt, ab minima.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-              repellat quam illum aut a asperiores aperiam, delectus velit nihil
-              porro, deleniti, praesentium impedit voluptas reiciendis quo
-              voluptatem. Deserunt, ab minima.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-              repellat quam illum aut a asperiores aperiam, delectus velit nihil
-              porro, deleniti, praesentium impedit voluptas reiciendis quo
-              voluptatem. Deserunt, ab minima.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-              repellat quam illum aut a asperiores aperiam, delectus velit nihil
-              porro, deleniti, praesentium impedit voluptas reiciendis quo
-              voluptatem. Deserunt, ab minima.
-            </p>
           </div>
         </div>
       </div>

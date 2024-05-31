@@ -17,7 +17,7 @@ const NoteModal = React.forwardRef((props, ref) => {
   return (
     <div ref={ref}>
       <svg
-        onClick={openModal}
+        onClick={openModal} id="plus"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
@@ -34,6 +34,7 @@ const NoteModal = React.forwardRef((props, ref) => {
         overlayClassName="modalOverlay" // Asegúrate de que estás aplicando la clase 'modalOverlay' al overlay del modal
       >
         <div className="header-modal">
+        
           <svg id="close"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -44,6 +45,7 @@ const NoteModal = React.forwardRef((props, ref) => {
           >
             <path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path>
           </svg>
+     
         </div>
         <textarea
           name=""
@@ -52,6 +54,7 @@ const NoteModal = React.forwardRef((props, ref) => {
         ></textarea>
 
         <div className="footer-inf">
+      
           <svg id="check"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -61,6 +64,7 @@ const NoteModal = React.forwardRef((props, ref) => {
           >
             <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path>
           </svg>
+         
         </div>
       </Modal>
     </div>

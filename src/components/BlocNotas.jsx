@@ -13,7 +13,7 @@ import Header from "./Header";
 
 const Index = ({ userCorreo }) => {
   const [titulo, setTitulo] = useState([]);
-
+  const hola = "hola";
 
 
   return (

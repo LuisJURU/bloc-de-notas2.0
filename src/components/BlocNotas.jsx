@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import "../css/BlocNotas.css";
@@ -10,10 +11,13 @@ const auth = getAuth(appFirebase);
 
 const Index = ({ userCorreo }) => {
   const [notas, setNotas] = useState([]);
+  const userId = auth.currentUser ? auth.currentUser.uid : null;
 
   useEffect(() => {
-    loadNotesFromIndexedDB();
-  }, []);
+    if (userId) {
+      loadNotesFromIndexedDB();
+    }
+  }, [userId]);
 
   const loadNotesFromIndexedDB = () => {
     const request = window.indexedDB.open("notasDB", 1);
@@ -29,7 +33,9 @@ const Index = ({ userCorreo }) => {
       const getAllRequest = objectStore.getAll();
 
       getAllRequest.onsuccess = (event) => {
-        setNotas(event.target.result);
+        const allNotes = event.target.result;
+        const userNotes = allNotes.filter(note => note.userId === userId);
+        setNotas(userNotes);
       };
 
       transaction.oncomplete = () => {
@@ -39,7 +45,9 @@ const Index = ({ userCorreo }) => {
 
     request.onupgradeneeded = (event) => {
       const db = event.target.result;
-      db.createObjectStore("notas", { keyPath: "id", autoIncrement: true });
+      if (!db.objectStoreNames.contains("notas")) {
+        db.createObjectStore("notas", { keyPath: "id", autoIncrement: true });
+      }
     };
   };
 
@@ -54,7 +62,7 @@ const Index = ({ userCorreo }) => {
       const db = event.target.result;
       const transaction = db.transaction(["notas"], "readwrite");
       const objectStore = transaction.objectStore("notas");
-      const addRequest = objectStore.add({ text: newNote });
+      const addRequest = objectStore.add({ text: newNote, userId });
 
       addRequest.onsuccess = () => {
         loadNotesFromIndexedDB();

@@ -44,8 +44,7 @@ function Notes({ notes, deleteNote, updateNote }) {
               </div>
               <div className="actions">
                 <Delete onClick={() => deleteNote(note.id)} />
-                <svg
-                  className="edit"
+                <svg className="edit"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -63,7 +62,7 @@ function Notes({ notes, deleteNote, updateNote }) {
       {showPopup && selectedNote && (
         <div className="overlay">
           <div className="popup">
-            <button className="btn-pop" onClick={handleClose}>Cerrar</button>
+            <button onClick={handleClose}>Cerrar</button>
             <Update
               note={selectedNote}
               onUpdate={handleUpdate}

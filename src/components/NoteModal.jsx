@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 // NoteModal.jsx
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
@@ -21,8 +22,11 @@ const NoteModal = React.forwardRef(({ addNote }, ref) => {
   }
 
   function handleSave() {
-    addNote(note);
+    const newNote = { text: note, format, color };
+    addNote(newNote);
     setNote("");
+    setFormat({});
+    setColor("#000000");
     closeModal();
   }
 
@@ -91,147 +95,35 @@ const NoteModal = React.forwardRef(({ addNote }, ref) => {
         <textarea
           value={note}
           onChange={(e) => setNote(e.target.value)}
+          placeholder="Escribe tu nota..."
           id="WritheNote"
-          placeholder="Escribe algo"
-          style={{ ...format, color: color }}
-        ></textarea>
+          style={{ ...format, color }}
+        />
         <div className="footer-inf">
-          <svg
-            id="check"
-            onClick={handleSave}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            style={{ fill: "rgba(0, 0, 0, 1)" }}
-          >
-            <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path>
-          </svg>
-          <svg
-            id="tachado"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            onClick={() =>
-              handleFormatChange({ textDecoration: "line-through" })
-            }
-          >
-            <text
-              x="5"
-              y="20"
-              style={{
-                fontFamily: "Courier New",
-                fontSize: "24",
-                fill: "#000",
-              }}
-            >
-              A
-            </text>
-            <line
-              x1="0"
-              y1="15"
-              x2="24"
-              y2="15"
-              style={{ stroke: "#000", strokeWidth: "2" }}
-            />
-          </svg>
-          <svg
-            id="subrayado"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            onClick={() => handleFormatChange({ textDecoration: "underline" })}
-          >
-            <text
-              x="5"
-              y="20"
-              style={{
-                textDecoration: "underline",
-                fontFamily: "Courier New",
-                fontSize: "24",
-                fill: "#000",
-              }}
-            >
-              S
-            </text>
-          </svg>
-          <svg             id="color"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            onClick={() => handleColorChange()}
-          >
-            <text
-              x="5"
-              y="20"
-              style={{
-                fontFamily: "Courier New",
-                fontSize: "24",
-                fill: "#000",
-              }}
-            >
-              C
-            </text>
-            <line
-              x1="0"
-              y1="22"
-              x2="24"
-              y2="22"
-              style={{ stroke: "#000", strokeWidth: "2" }}
-            />
-          </svg>
-          <svg
-            id="cursiva"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
+          <button onClick={() => handleFormatChange({ fontWeight: "bold" })}>
+            Bold
+          </button>
+          <button
             onClick={() => handleFormatChange({ fontStyle: "italic" })}
           >
-            <text
-              x="5"
-              y="20"
-              style={{
-                fontStyle: "italic",
-                fontFamily: "Courier New",
-                fontSize: "24",
-                fill: "#000",
-              }}
-            >
-              I
-            </text>
-          </svg>
-          <svg
-            id="negrilla"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            onClick={() => handleFormatChange({ fontWeight: "bold" })}
+            Italic
+          </button>
+          <button
+            onClick={() =>
+              handleFormatChange({ textDecoration: "underline" })
+            }
           >
-            <text
-              x="5"
-              y="20"
-              style={{
-                fontWeight: "bold",
-                fontFamily: "Courier New",
-                fontSize: "24",
-                fill: "#000",
-              }}
-            >
-              B
-            </text>
-          </svg>
+            Underline
+          </button>
+          <button onClick={handleColorChange}>
+            Color
+          </button>
+          <button onClick={handleSave}>Guardar</button>
         </div>
       </Modal>
     </div>
   );
 });
-
-NoteModal.displayName = "NoteModal";
 
 export default NoteModal;
 

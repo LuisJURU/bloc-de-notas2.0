@@ -1,54 +1,148 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-// /* eslint-disable react-hooks/exhaustive-deps */
-// /* eslint-disable react/prop-types */
-// /* eslint-disable no-unused-vars */
-import "../css/BlocNotas.css";
 import { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../credenciales";
-import appFirebase from "../credenciales";
+import "../css/BlocNotas.css";
 import { getAuth, signOut } from "firebase/auth";
 import Header from "./Header";
 import Notes from "./Notes";
+import appFirebase from "../credenciales";
 
 const auth = getAuth(appFirebase);
 
 const Index = ({ userCorreo }) => {
   const [notas, setNotas] = useState([]);
 
-  const notasCollection = collection(db, "notas");
+  useEffect(() => {
+    loadNotesFromIndexedDB();
+  }, []);
 
-  const getNotas = async () => {
-    const data = await getDocs(notasCollection);
-    setNotas(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  const loadNotesFromIndexedDB = () => {
+    const request = window.indexedDB.open("notasDB", 1);
+
+    request.onerror = (event) => {
+      console.log("Error opening IndexedDB:", event.target.error);
+    };
+
+    request.onsuccess = (event) => {
+      const db = event.target.result;
+      const transaction = db.transaction(["notas"], "readonly");
+      const objectStore = transaction.objectStore("notas");
+      const getAllRequest = objectStore.getAll();
+
+      getAllRequest.onsuccess = (event) => {
+        setNotas(event.target.result);
+      };
+
+      transaction.oncomplete = () => {
+        db.close();
+      };
+    };
+
+    request.onupgradeneeded = (event) => {
+      const db = event.target.result;
+      db.createObjectStore("notas", { keyPath: "id", autoIncrement: true });
+    };
   };
 
   const addNote = (newNote) => {
-    setNotas((prevNotas) => [...prevNotas, { id: prevNotas.length, text: newNote }]);
+    const request = window.indexedDB.open("notasDB", 1);
+
+    request.onerror = (event) => {
+      console.log("Error opening IndexedDB:", event.target.error);
+    };
+
+    request.onsuccess = (event) => {
+      const db = event.target.result;
+      const transaction = db.transaction(["notas"], "readwrite");
+      const objectStore = transaction.objectStore("notas");
+      const addRequest = objectStore.add({ text: newNote });
+
+      addRequest.onsuccess = () => {
+        loadNotesFromIndexedDB();
+      };
+
+      transaction.oncomplete = () => {
+        db.close();
+      };
+    };
   };
 
-  useEffect(() => {
-    getNotas();
-  }, []);
+  const deleteNote = (noteId) => {
+    const request = window.indexedDB.open("notasDB", 1);
+
+    request.onerror = (event) => {
+      console.log("Error opening IndexedDB:", event.target.error);
+    };
+
+    request.onsuccess = (event) => {
+      const db = event.target.result;
+      const transaction = db.transaction(["notas"], "readwrite");
+      const objectStore = transaction.objectStore("notas");
+      const deleteRequest = objectStore.delete(noteId);
+
+      deleteRequest.onsuccess = () => {
+        loadNotesFromIndexedDB();
+      };
+
+      transaction.oncomplete = () => {
+        db.close();
+      };
+    };
+  };
+
+  const updateNote = (noteId, newText) => {
+    const request = window.indexedDB.open("notasDB", 1);
+
+    request.onerror = (event) => {
+      console.log("Error opening IndexedDB:", event.target.error);
+    };
+
+    request.onsuccess = (event) => {
+      const db = event.target.result;
+      const transaction = db.transaction(["notas"], "readwrite");
+      const objectStore = transaction.objectStore("notas");
+      const getRequest = objectStore.get(noteId);
+
+      getRequest.onsuccess = (event) => {
+        const noteToUpdate = event.target.result;
+        noteToUpdate.text = newText;
+        const updateRequest = objectStore.put(noteToUpdate);
+
+        updateRequest.onsuccess = () => {
+          loadNotesFromIndexedDB();
+        };
+      };
+
+      transaction.oncomplete = () => {
+        db.close();
+      };
+    };
+  };
+
+  const handleDeleteNote = (noteId) => {
+    deleteNote(noteId);
+  };
+
+  const handleUpdateNote = (noteId, newText) => {
+    updateNote(noteId, newText);
+  };
 
   return (
     <>
       <div className="logout">
-        <button
-          id="btn-logout"
-          onClick={() => signOut(auth)}
-        >
+        <button id="btn-logout" onClick={() => signOut(auth)}>
           Cerrar Sesion
         </button>
       </div>
       <div className="container-bloc">
         <div className="in-bloc">
           <div>
-            {/* Aca se immporta el NavBar del bloc de notas */}
             <Header userCorreo={userCorreo} addNote={addNote} />
           </div>
-          <Notes notes={notas} />
+          <Notes
+            notes={notas}
+            deleteNote={handleDeleteNote}
+            updateNote={handleUpdateNote}
+          />
         </div>
       </div>
     </>

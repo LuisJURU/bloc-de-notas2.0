@@ -2,21 +2,15 @@
 // /* eslint-disable no-undef */
 import { useState } from "react";
 import "../css/Notes.css";
+import NoteModal from "./NoteModal"; // Importa NoteModal
+import Delete from "./Delete"; // Importa Delete
+import Update from "./Update"; // Importa Update
 
-import Delete from "./Delete";
-import Update from "./Update";
+function Notes({ notes, deleteNote, updateNote }) {
+  const [selectedNote, setSelectedNote] = useState(null); // Estado para la nota seleccionada
 
-function Notes({ notes }) {
-  const [showPopup, setShowPopup] = useState(false);
-  const [selectedNote, setSelectedNote] = useState(null);
-
-  const handleClick = (note) => {
-    setSelectedNote(note);
-    setShowPopup(true);
-  };
-
-  const handleClose = () => {
-    setShowPopup(false);
+  const handleEditNote = (note) => {
+    setSelectedNote(note); // Almacena la nota seleccionada en el estado
   };
 
   return (
@@ -30,23 +24,28 @@ function Notes({ notes }) {
                 key={index}
                 style={{ display: "flex", alignItems: "center" }}
               >
-                <div className="notes" onClick={() => handleClick(note)}>
+                <div
+                  className="notes"
+                  onClick={() => handleEditNote(note)} // Maneja el clic para editar la nota
+                >
                   <div>{note.text}</div>
                 </div>
                 <div className="actions">
-                  <Delete />
-                  <Update />
+                  {/* Pasar la función deleteNote con el ID de la nota */}
+                  <Delete onClick={() => deleteNote(note.id)} />
+                  {/* Pasar la función updateNote con el ID de la nota y el nuevo texto */}
+                  <Update onClick={() => updateNote(note.id, "Nuevo texto")} />
                 </div>
               </div>
             )
         )}
-      {showPopup && (
-        <div className="overlay">
-          <div className="popup">
-            <button onClick={handleClose}>Cerrar</button>
-            <p>{selectedNote.text}</p>
-          </div>
-        </div>
+      {/* Renderizar NoteModal si hay una nota seleccionada */}
+      {selectedNote && (
+        <NoteModal
+          note={selectedNote}
+          updateNote={updateNote}
+          onClose={() => setSelectedNote(null)} // Maneja el cierre del modal
+        />
       )}
     </div>
   );

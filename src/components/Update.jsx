@@ -1,8 +1,10 @@
-import '../css/Update.css'
+/* eslint-disable react/prop-types */
 
-function Update() {
+import "../css/Update.css";
+
+function Update({ onClick }) {
   return (
-    <div className='update'>
+    <div className='update' onClick={onClick}>
       <svg 
         xmlns="http://www.w3.org/2000/svg" 
         width="24" 
@@ -17,4 +19,4 @@ function Update() {
   )
 }
 
-export default Update
+export default Update;

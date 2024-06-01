@@ -3,7 +3,7 @@
   gap: 1rem;
   justify-content: flex-end; /* Cambia esto */
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1rem 0.5rem;
 }
 
 svg {
@@ -18,4 +18,31 @@ svg:first-child {
 svg:last-child {
   margin-left: 20px;
   
+}
+
+#search {
+  cursor: pointer;
+  
+}
+
+.search-input {
+  position: absolute;
+  right: 0;
+  outline: none; 
+  border: none;
+  visibility: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2); 
+  padding: 0.25rem 1rem;
+  border-radius: 50px;
+  font-size: 1.11rem;
+  width: 200px;
+  transition: right 0.5s ease-out, visibility 0.5s ease-out, opacity 0.5s ease-out;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.search-input.active {  
+  visibility: visible;
+  right: 200px;
+  opacity: 1;
 }

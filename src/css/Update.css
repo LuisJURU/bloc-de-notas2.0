@@ -1,0 +1,16 @@
+.update{
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 2px;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+.update svg{
+    fill: rgb(0, 0, 0);
+    transition: 0.3s;
+}
+
+.update:hover svg{
+    fill:  rgb(125, 117, 117);
+  }

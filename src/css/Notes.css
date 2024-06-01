@@ -1,6 +1,7 @@
 .container-notes {
 overflow-y: auto;
-    max-height: 400px; /* Añadido */
+    max-height: 400px;
+
 }
 
 
@@ -28,6 +29,7 @@ overflow-y: auto;
     border-radius: 10px;
     width: 70%;
     max-height: 100px;
+    height: 200px;
     overflow-y: auto;
 }
 
@@ -96,3 +98,8 @@ overflow-y: auto;
     align-items: center;
     z-index: 1000;
 }
+
+.actions {
+    display: flex;
+    flex-direction: column;
+  }

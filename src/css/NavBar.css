@@ -22,6 +22,7 @@ svg:last-child {
 
 #search {
   cursor: pointer;
+  display: none;
   
 }
 

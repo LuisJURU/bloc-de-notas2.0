@@ -11,6 +11,7 @@ const auth = getAuth(appFirebase);
 
 const Index = ({ userCorreo }) => {
   const [notas, setNotas] = useState([]);
+  const [filteredNotes, setFilteredNotes] = useState([]);
   const userId = auth.currentUser ? auth.currentUser.uid : null;
 
   useEffect(() => {
@@ -18,6 +19,10 @@ const Index = ({ userCorreo }) => {
       loadNotesFromIndexedDB();
     }
   }, [userId]);
+
+  useEffect(() => {
+    setFilteredNotes(notas);
+  }, [notas]);
 
   const loadNotesFromIndexedDB = () => {
     const request = window.indexedDB.open("notasDB", 1);
@@ -34,7 +39,7 @@ const Index = ({ userCorreo }) => {
 
       getAllRequest.onsuccess = (event) => {
         const allNotes = event.target.result;
-        const userNotes = allNotes.filter(note => note.userId === userId);
+        const userNotes = allNotes.filter((note) => note.userId === userId);
         setNotas(userNotes);
       };
 
@@ -134,6 +139,14 @@ const Index = ({ userCorreo }) => {
     updateNote(noteId, newText);
   };
 
+  const handleSearch = (event) => {
+    const searchTerm = event.target.value.toLowerCase();
+    const filteredNotes = notas.filter((note) =>
+      note.text.toLowerCase().includes(searchTerm)
+    );
+    setFilteredNotes(filteredNotes);
+  };
+
   return (
     <>
       <div className="logout">
@@ -145,10 +158,14 @@ const Index = ({ userCorreo }) => {
         <div className="in-bloc">
           <div>
             <Header userCorreo={userCorreo} addNote={addNote} />
+            <input
+              type="text"
+              placeholder="Buscar..."
+              onChange={handleSearch}
+            />
           </div>
-          
           <Notes
-            notes={notas}
+            notes={filteredNotes}
             deleteNote={handleDeleteNote}
             updateNote={handleUpdateNote}
           />

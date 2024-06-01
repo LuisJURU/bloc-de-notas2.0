@@ -33,7 +33,7 @@ function Notes({ notes, deleteNote, updateNote }) {
   };
 
   return (
-<div style={{ overflowY: 'auto', maxHeight: '470px' }}>
+<div style={{ overflowY: 'auto', maxHeight: '410px' }}>
 {notes.map(
   (note, index) =>
     note.text &&

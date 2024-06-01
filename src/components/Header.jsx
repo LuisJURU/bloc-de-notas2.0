@@ -3,11 +3,11 @@
 import "../css/Header.css";
 import NavBar from "./NavBar";
 
-const Header = ({ userCorreo }) => {
+const Header = ({ userCorreo, addNote }) => {
   return (
     <div className="header">
       <h2>Bienvenido {userCorreo}</h2>
-      <NavBar></NavBar>
+      <NavBar addNote={addNote}/>
     </div>
   );
 };

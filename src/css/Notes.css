@@ -1,40 +1,98 @@
-/* .container-notes {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 10px;
-  background: #c0c0c0;
-  border-radius: 42px 0px;
-  width: 40%;
-  height: 15%;
-} */
+.container-notes {
+overflow-y: auto;
+    max-height: 400px; /* Añadido */
+}
 
 
-.notes{
+/* Estilos para la barra de desplazamiento */
+.container-notes::-webkit-scrollbar {
+    width: 10px;
+}
+
+.container-notes::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.container-notes::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+.container-notes::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.notes {
     background: #c0c0c0;
     margin-top: 10px;
-    border-radius: 42px 0px;
-    width: 40%;
-    height: 15%;
+    margin-left: 10px;
+    border-radius: 10px;
+    width: 70%;
+    max-height: 100px;
+    overflow-y: auto;
 }
 
-/* .container-notes {
-  width: 50%;
-  margin: auto;
+.notes::-webkit-scrollbar {
+    width: 2px;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.notes::-webkit-scrollbar-track {
+    background: #f1f1f1;
 }
 
-li {
-  margin-bottom: 10px;
-  background-color: #f0f0f0;
-  padding: 10px;
-  border-radius: 5px;
+.notes::-webkit-scrollbar-thumb {
+    background: #423e3e;
 }
 
-h2 {
-  margin-bottom: 20px;
-} */
+.notes::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.note {
+    font-size: 20px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.popup {
+    overflow-y: auto;
+    position: fixed;
+    max-height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para la barra de desplazamiento del pop-up */
+.popup::-webkit-scrollbar {
+    width: 2px;
+}
+
+.popup::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.popup::-webkit-scrollbar-thumb {
+    background: #544f4f;
+}
+
+.popup::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}

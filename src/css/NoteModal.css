@@ -9,7 +9,7 @@
   transform: translate(-50%, -50%);
   width: 400px;
   height: 300px;
-  background-color: rgb(255, 255, 255);
+  background-color: none;
   border-radius: 10px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
 }
@@ -73,5 +73,46 @@
 
 #plus {
   cursor: pointer;
+  
+}
+
+#negrilla {
+  cursor: pointer;
+  background:none;
+  width: 30px;
+  height: 25px;
+  
+}
+
+#cursiva {
+  cursor: pointer;
+  background:none;
+  width: 30px;
+  height: 25px;
+  
+  
+}
+#tachado {
+  cursor: pointer;
+  background:none;
+  width: 30px;
+  height: 25px;
+  
+}
+
+#subrayado {
+  cursor: pointer;
+  background:none;
+  width: 30px;
+  height: 25px;
+  
+}
+
+#color {
+  cursor: pointer;
+  background:none;
+  width: 30px;
+  height: 25px;
+  
   
 }

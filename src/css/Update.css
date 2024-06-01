@@ -1,16 +1,35 @@
-.update{
-    cursor: pointer;
-    border-radius: 5px;
-    padding: 2px;
-    margin: 10px;
-    transition: 0.3s;
+.update {
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 10px;
+  transition: 0.3s;
 }
 
-.update svg{
-    fill: rgb(0, 0, 0);
-    transition: 0.3s;
+.update svg {
+  fill: rgb(0, 0, 0);
+  transition: 0.3s;
 }
 
-.update:hover svg{
-    fill:  rgb(125, 117, 117);
-  }
+.update:hover svg {
+  fill: rgb(125, 117, 117);
+}
+
+#textArea{
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
+  resize: none;
+  height: 200px;
+  width: 400px
+}
+
+.btn-save{
+  border-radius: 5px;
+  padding: 4px;
+  margin: 10px;
+  transition: 0.3s;
+  font-size: 15px;
+  display: flex;
+}

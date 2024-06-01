@@ -29,7 +29,7 @@
   max-height: 100px;
   height: 200px;
   overflow-y: auto;
-  
+  display: flex;
 }
 
 .notes::-webkit-scrollbar {

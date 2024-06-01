@@ -146,6 +146,7 @@ const Index = ({ userCorreo }) => {
           <div>
             <Header userCorreo={userCorreo} addNote={addNote} />
           </div>
+          
           <Notes
             notes={notas}
             deleteNote={handleDeleteNote}

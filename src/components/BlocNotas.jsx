@@ -1,9 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/prop-types */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import "../css/BlocNotas.css";
 import { getAuth, signOut } from "firebase/auth";
@@ -71,7 +67,7 @@ const Index = ({ userCorreo }) => {
       const db = event.target.result;
       const transaction = db.transaction(["notas"], "readwrite");
       const objectStore = transaction.objectStore("notas");
-      const addRequest = objectStore.add({ ...newNote, userId });
+      const addRequest = objectStore.add({ text: newNote, userId });
 
       addRequest.onsuccess = () => {
         loadNotesFromIndexedDB();
@@ -106,7 +102,7 @@ const Index = ({ userCorreo }) => {
     };
   };
 
-  const updateNote = (noteId, updatedFields) => {
+  const updateNote = (noteId, newText) => {
     const request = window.indexedDB.open("notasDB", 1);
 
     request.onerror = (event) => {
@@ -121,7 +117,7 @@ const Index = ({ userCorreo }) => {
 
       getRequest.onsuccess = (event) => {
         const noteToUpdate = event.target.result;
-        Object.assign(noteToUpdate, updatedFields);
+        noteToUpdate.text = newText;
         const updateRequest = objectStore.put(noteToUpdate);
 
         updateRequest.onsuccess = () => {
@@ -139,14 +135,14 @@ const Index = ({ userCorreo }) => {
     deleteNote(noteId);
   };
 
-  const handleUpdateNote = (noteId, updatedFields) => {
-    updateNote(noteId, updatedFields);
+  const handleUpdateNote = (noteId, newText) => {
+    updateNote(noteId, newText);
   };
 
   const handleSearch = (event) => {
     const searchTerm = event.target.value.toLowerCase();
     const filteredNotes = notas.filter((note) =>
-      note.text && note.text.toLowerCase().includes(searchTerm)
+      note.text.toLowerCase().includes(searchTerm)
     );
     setFilteredNotes(filteredNotes);
   };
@@ -180,4 +176,3 @@ const Index = ({ userCorreo }) => {
 };
 
 export default Index;
-

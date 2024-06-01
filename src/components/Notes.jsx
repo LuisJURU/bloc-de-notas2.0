@@ -1,11 +1,16 @@
-import "../css/Notes.css"
+/* eslint-disable no-undef */
+import "../css/Notes.css";
+
+
 
 function Notes() {
+ 
   return (
     <div className="container-notes">
-        <h2>hola</h2>
+      <div className="notes">
+      </div>
     </div>
-  )
+  );
 }
 
-export default Notes
+export default Notes;

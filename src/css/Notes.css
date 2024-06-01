@@ -1,8 +1,40 @@
-.container-notes{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+/* .container-notes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+  background: #c0c0c0;
+  border-radius: 42px 0px;
+  width: 40%;
+  height: 15%;
+} */
+
+
+.notes{
+    background: #c0c0c0;
     margin-top: 10px;
-    background-color: red;
+    border-radius: 42px 0px;
+    width: 40%;
+    height: 15%;
 }
 
+/* .container-notes {
+  width: 50%;
+  margin: auto;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+h2 {
+  margin-bottom: 20px;
+} */

@@ -1,4 +1,6 @@
-
+h2{
+    margin: 10px;
+}
 .container-bloc {
   width: 80vw;
   height: 80vh;
@@ -15,6 +17,11 @@
   border-radius: 10px;
 }
 
-h2{
-    margin: 10px;
+.logout{
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px;
+  color: white;
+  border: none;
+
 }

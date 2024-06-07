@@ -36,8 +36,7 @@ function Notes({ notes, deleteNote, updateNote }) {
     <div style={{ overflowY: 'auto', maxHeight: '410px' }}>
       {notes.map(
         (note, index) =>
-          note.text &&
-          note.text.trim() !== "" && (
+          note.text && typeof note.text === 'string' && note.text.trim() !== "" && (
             <div key={index} style={{ display: "flex", alignItems: "center", flexWrap: "wrap", overflow: "auto"}}>
               <div
                 className="notes"
